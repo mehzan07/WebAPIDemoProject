@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace WebAPIDemoProject.DataModel
