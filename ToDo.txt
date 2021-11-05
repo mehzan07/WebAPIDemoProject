@@ -1,2 +1,11 @@
 ﻿Project description based on:
 https://www.c-sharpcorner.com/article/creating-a-web-api-project-in-visual-studio-2019/
+
+
+The database : DemoDatabase, does not exist, we should create it via Visual studio as following:
+
+1- in VS : View: Server Explorer
+2- Right click Data Connection and press to Add Connection
+3- in the new interface: write: Microsoft SQL Server under:Data Source, and  .\SQLEXPRESS under Server name  and DemoDatabase under Select or Enter a Database name
+4- press to OK
+5 - asks there is no database with this name do you want to create new, press Yes
