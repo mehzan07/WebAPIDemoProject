@@ -4,34 +4,41 @@ https://www.c-sharpcorner.com/article/creating-a-web-api-project-in-visual-studi
 
 The database : DemoDatabase, does not exist, we should create it via Visual studio as following:
 
-1- in VS : View: Server Explorer
+1- 1- in VS : View: Server Explorer
 2- Right click Data Connection and press to Add Connection
-3- in the new interface: write: Microsoft SQL Server under:Data Source, and  .\SQLEXPRESS under Server name  and DemoDatabase under Select or Enter a Database name
+3- in the new interface: write: Microsoft SQL Server under:Data Source, and .\SQLEXPRESS under Server name and DemoDatabase under Select or Enter a Database name (where SQLEXPRESS is instans name)
 4- press to OK
-5 - asks there is no database with this name do you want to create new, press Yes
+5 – you shall be asked there is no database with this name do you want to create new, press Yes
 6- Database is created and seen in the Server expplorer
-7- right click on the database (DemoDatabase ) and press to the NY Query
-8- pas the following script to the New Query Windows to crate table Users
+7- right click on the database (DemoDatabase ) and press to the NewQuery
+8- paste the following script to the New Query Windows to create table Users
 CREATE TABLE [dbo].[Users] (
-        [Id] INT IDENTITY (1, 1) NOT NULL,
-        [Name] NVARCHAR (200) NULL,
-        [Address] NVARCHAR (200) NULL,
-        [Email] NVARCHAR (200) NULL,
-        [PhoneNumber] NVARCHAR (12) NULL,
-        [IsActive] bit  NOT NULL   
-        CONSTRAINT [PK_dbo.Users] PRIMARY KEY CLUSTERED ([UserID] ASC)
-    );
-9- press to execute to create this table 
+[Id] INT IDENTITY (1, 1) NOT NULL,
+[Name] NVARCHAR (200) NULL,
+[Address] NVARCHAR (200) NULL,
+[Email] NVARCHAR (200) NULL,
+[PhoneNumber] NVARCHAR (12) NULL,
+[IsActive] bit NOT NULL
+CONSTRAINT [PK_dbo.Users] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+9- press to execute to create this table
 Now database is ready.
-
+If you want to use DbContext and Create files Users.cs under DetaModel folder
 Now you can execute Scaffold-DbContext to create Users.cs under DataModel and DemoDatabaseContext.cs
 via NuGet Packge Manager Consule
-PM> Scaffold-DbContext "Server=.\SQLEXPRESS;Initial Catalog=DemoDatabase;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataModel
+PM> Scaffold-DbContext "Server=.\SQLEXPRESS;Initial Catalog=DemoDatabase;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir
+Here .\SQLEXPRESS; is SqlServer instance for min machine. 
 
-Here .\SQLEXPRESS; is SqlServer instance for min machine.
- the file Users.cs is exists because of this, command says to you that files Users.cs is exist before you should use Force command to overwrite it.
- and you needed do that because files are exists befor.
+the file Users.cs is exists because of this, command says to you that files Users.cs is exist before you should use Force command to overwrite it. 
 
- and now you can run the program and test it on Swagger interface or Postman, m.m
+and you needed do that because files are exists befor. 
 
-Now Test in Swagger works fine for UserController, Post, get and delete a user.
+  
+
+and now you can run the program and test it on Swagger interface or Postman, m.m 
+
+  
+
+Now Test in Swagger works fine for UserController, Post, get and delete a user. 
+
+ 
