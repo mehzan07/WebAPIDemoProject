@@ -33,3 +33,5 @@ Here .\SQLEXPRESS; is SqlServer instance for min machine.
  and you needed do that because files are exists befor.
 
  and now you can run the program and test it on Swagger interface or Postman, m.m
+
+Now Test in Swagger works fine for UserController, Post, get and delete a user.
