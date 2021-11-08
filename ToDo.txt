@@ -13,7 +13,7 @@ The database : DemoDatabase, does not exist, we should create it via Visual stud
 7- right click on the database (DemoDatabase ) and press to the NY Query
 8- pas the following script to the New Query Windows to crate table Users
 CREATE TABLE [dbo].[Users] (
-        [UserID] INT IDENTITY (1, 1) NOT NULL,
+        [Id] INT IDENTITY (1, 1) NOT NULL,
         [Name] NVARCHAR (200) NULL,
         [Address] NVARCHAR (200) NULL,
         [Email] NVARCHAR (200) NULL,
@@ -28,8 +28,8 @@ Now you can execute Scaffold-DbContext to create Users.cs under DataModel and De
 via NuGet Packge Manager Consule
 PM> Scaffold-DbContext "Server=.\SQLEXPRESS;Initial Catalog=DemoDatabase;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataModel
 
-Here .\SQLEXPRESS; is SqlServe instance for min machine.
- the file Users.cs is exists because of this this command says to you that files Users.cs is exist before you should use Force command to overwrite it.
+Here .\SQLEXPRESS; is SqlServer instance for min machine.
+ the file Users.cs is exists because of this, command says to you that files Users.cs is exist before you should use Force command to overwrite it.
  and you needed do that because files are exists befor.
 
- and now youcan run the program and test it on Swager interface
+ and now you can run the program and test it on Swagger interface or Postman, m.m
