@@ -1,11 +1,11 @@
 # WebAPIDemoProject
 Creating A Web API Project In Visual Studio 2019
-url for website: https://www.c-sharpcorner.com/article/creating-a-web-api-project-in-visual-studio-2019/
+
 
 Introduction
 In this article I’m trying to explain, creating API with GET, POST, PUT and DELETE. These are basic CRUD operations which we need while creating APIs. Also, I'll explain how to connect the database using the Scaffold DB context and creating a model to process the API request and response.
 
-Please refer to the below link to Creating A WEB API Project In Visual Studio 2019 - ASP.NET Core and Swagger.
+
 
 The basic things we need to understand before start writing WebAPI’s,
 
@@ -153,96 +153,3 @@ Both post and put are done in the same API.
 Delete API
 
 In this, we are just setting IsActive to false.
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using WebAPIDemoProject.DataModel;
-using static WebAPIDemoProject.Models.UserModel;
-namespace WebAPIDemoProject.Controllers {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UserController: ControllerBase {
-        DemoDatabaseContext db = new DemoDatabaseContext();
-        // GET: api/GetUserById
-        [HttpGet]
-        [Route("GetUserById")]
-        public ActionResult GetUserById(int id) {
-            try {
-                var user = db.Set < Users > ().Where(w => w.Id == id).Select(c => new GetUserModel {
-                    UserID = c.Id,
-                        Name = c.Name,
-                        Address = c.Address,
-                        Email = c.Email,
-                        PhoneNumber = c.PhoneNumber
-                });
-                return Ok(user);
-            } catch (Exception ex) {
-                return BadRequest(ex.StackTrace);
-            }
-        }
-        // We can write both Post and Put(update) in same API
-        // POST: api/PostUser
-        [HttpPost]
-        [Route("PostUser")]
-        public ActionResult PostUser(GetUserModel userModel) {
-            try {
-                var userIsExist = db.Set < Users > ().FirstOrDefault(w => w.Id == userModel.UserID);
-                //Update block
-                if (userIsExist != null) {
-                    userIsExist.Name = userModel.Name;
-                    userIsExist.PhoneNumber = userModel.PhoneNumber;
-                    userIsExist.Email = userModel.Email;
-                    userIsExist.Address = userModel.Address;
-                    db.SaveChanges();
-                } else // User not exist creaing new user
-                {
-                    var user = new Users();
-                    // user.Id =;  auto increament in Database
-                    user.Name = userModel.Name;
-                    user.PhoneNumber = userModel.PhoneNumber;
-                    user.Email = userModel.Email;
-                    user.Address = userModel.Address;
-                    user.IsActive = user.IsActive;
-                    db.Users.Add(user);
-                    db.SaveChanges();
-                }
-                return Ok();
-            } catch (Exception ex) {
-                return BadRequest(ex.StackTrace);
-            }
-        }
-        // DELETE: api/DeleteUserById
-        [HttpDelete()]
-        [Route("DeleteUserById")]
-        public ActionResult DeleteUser(int id) {
-            try {
-                var user = db.Set < Users > ().FirstOrDefault(w => w.Id == id);
-                if (user != null) {
-                    user.IsActive = false;
-                    db.SaveChanges();
-                    return Ok();
-                } else {
-                    return Ok("User not Exist");
-                }
-            } catch (Exception ex) {
-                return BadRequest(ex.StackTrace);
-            }
-        }
-    }
-}
-C#
-Swagger
-
-When you run the code you will see swagger as shown below. [Please follow the previous article to setup the swagger. Link shared in the beginning.
-
-Creating A WEB API Project In Visual Studio 2019
-
-Summary
-In this article, we learned how to write APIs in .NET Core using an entity framework. AI aso explained HTTP Methods & routing briefly. I hope this article was useful, and now you have a better understanding of the Web API concept.
-
-Creating A WEB API ProjectVisual StudioVisual Studio 2019Web API Project
-
